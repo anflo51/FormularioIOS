@@ -113,8 +113,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //El UITextField de numero telefonico solo admite numeros
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+        let invalidCharacters = CharacterSet(charactersIn: "0123456789qQ").inverted
         return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
+    }
+    
+    func validateContrasenaLength(_ contrasena: String) -> Bool{
+        if contrasena.characters.count > 5 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func nameForImage() -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        
+        let info = String(calendar.component(.day, from: date))+String(calendar.component(.month, from: date))+String(calendar.component(.hour, from: date))+String(calendar.component(.second, from: date))
+        
+        return info
     }
 }
 
